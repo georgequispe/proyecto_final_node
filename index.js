@@ -33,6 +33,14 @@ app.use('/api/auth', authRouter);
 app.use((req, res) => {
   res.status(404).send('Ruta no encontrada');
 });
+// En tu index.js, antes de levantar el app.listen
+app.get('/', (req, res) => {
+  res.json({
+    message: "¡Bienvenido a la API de Productos de Verduleria y Fruteria!",
+    status: "Online",
+    version: "1.0.0"
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
