@@ -11,7 +11,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.json({
+    message: "¡Bienvenido a la API de Productos de Verduleria y Fruteria!",
+    status: "Online",
+    version: "1.0.0"
+  });
+});
 
 // Middleware de aplicación
 app.use((req, res, next) => { 
@@ -34,13 +40,7 @@ app.use((req, res) => {
   res.status(404).send('Ruta no encontrada');
 });
 // En tu index.js, antes de levantar el app.listen
-app.get('/', (req, res) => {
-  res.json({
-    message: "¡Bienvenido a la API de Productos de Verduleria y Fruteria!",
-    status: "Online",
-    version: "1.0.0"
-  });
-});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
