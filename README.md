@@ -13,8 +13,11 @@ Esta es una API REST desarrollada con Node.js y Express para la gestión de prod
 2. Instalar las dependencias del proyecto:
    ```bash
    npm install
-## Para ver el deploy
-https://proyecto-final-node-one.vercel.app/api/
+```
 
-## Para ver los articulos
-https://proyecto-final-node-one.vercel.app/api/productos
+## 🔍 Ver el deploy
+
+- API base (deploy): https://proyecto-final-node-one.vercel.app
+
+- Endpoint de productos: https://proyecto-final-node-one.vercel.app/api/productos
+

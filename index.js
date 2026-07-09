@@ -1,6 +1,5 @@
 
 import express from 'express';
-import {auth} from './src/middlewars/auth.middlewars.js';
 import authRouter from './src/routes/auth.router.js';
 //levanta las variables de entorno desde el archivo .env
 import dotenv from 'dotenv';
@@ -11,6 +10,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+// Parse URL-encoded bodies (from HTML forms or some clients)
+app.use(express.urlencoded({ extended: true }));
+// Handle JSON parse errors from body parsing middleware
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ error: 'Invalid JSON in request body' });
+  }
+  next();
+});
 app.get('/', (req, res) => {
   res.json({
     message: "¡Bienvenido a la API de Productos de Verduleria y Fruteria!",
@@ -18,12 +26,6 @@ app.get('/', (req, res) => {
     version: "1.0.0"
   });
 });
-
-// Middleware de aplicación
-app.use((req, res, next) => { 
-console.log(`Datos recibidos: ${req.method} ${req.url}`); 
-next(); // Pasa el control al siguiente middleware o ruta 
-}); 
 
 //prefijo: /api/productos
 //para GET http://localhost:3000/api/productos
